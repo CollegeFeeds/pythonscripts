@@ -8,6 +8,7 @@ file1=open('undergradresults.txt','w+')
 counter=0
 for i in soup2:
      link=i["href"]
+     title=i["title"]
      src2=requests.get(link).text
      soup3=bs(src2,"html.parser")
      soup4=soup3.find_all("div",class_="content-inner grid_12")[1].find_all("a")[0]
@@ -21,6 +22,7 @@ soup2=soup1.find_all('a')
 file1=open('postgradresults.txt','w+')
 for i in soup2:
      link=i["href"]
+     title=i["title"]
      src2=requests.get(link).text
      soup3=bs(src2,"html.parser")
      soup4=soup3.find_all("div",class_="content-inner grid_12")[1].find_all("a")[0]
