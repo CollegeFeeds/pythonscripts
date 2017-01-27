@@ -4,16 +4,16 @@ import MySQLdb
 db=MySQLdb.connect("localhost","root","plutonian","test1")
 cursor2=db.cursor()
 #cursor3=db.cursor()
-cmd="""select * from diplomacounters"""
+cmd="""select * from undergradcounters"""
 cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
 titlef=alt[1]
 src=requests.get("http://www.du.ac.in/du/index.php?page=students-welfare").text
 soup=bs(src,"html.parser")
-soup1=soup.find_all('div',class_="block")[5]          
+soup1=soup.find_all('div',class_="block")[1]          
 soup2=soup1.find_all('a') 
-file1=open('diplomaresults.txt','w+')
+file1=open('undergradresults.txt','w+')
 counter=alt[0]
 #print "0"
 for i in soup2:
@@ -21,8 +21,8 @@ for i in soup2:
      title=i["title"]
      #print "1"
      if title == alt[1]:
-        cursor2.execute("""update diplomacounter set diplomatitle=%s""",(titlef))
-        cursor2.execute("""update diplomacounter set diplomaid=%d""",(counter))
+        cursor2.execute("""update undergradcounter set undergradtitle=%s""",(titlef,))
+        cursor2.execute("""update undergradcounter set undergradid=%d""",(counter))
         break
      titlef=title
      #print "2"
@@ -30,7 +30,7 @@ for i in soup2:
      soup3=bs(src2,"html.parser")
      soup4=soup3.find_all("div",class_="content-inner grid_12")[1].find_all("a")[0]
      linkf=soup4["href"]
-     sql="""insert into diplomaresults(id,title,linkf) values(NULL,'%s','%s')"""%(title,linkf)
+     sql="""insert into undergradresults(id,title,linkf) values(NULL,'%s','%s')"""%(title,linkf)
      cursor2.execute(sql)
      file1.write('\nhttp://www.du.ac.in/du/%s'%linkf)
      #print "3"
