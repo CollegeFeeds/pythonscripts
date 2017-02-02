@@ -9,9 +9,9 @@ cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
 titlef=alt[1]
-src=requests.get("http://exam.du.ac.in/PG-result.html").text
+src=requests.get("http://www.du.ac.in/du/index.php?page=students-welfare").text
 soup=bs(src,"html.parser")
-soup1=soup.find_all('article',id="contents")[2]          
+soup1=soup.find_all('div',class_="block")[2]          
 soup2=soup1.find_all('a') 
 file1=open('postgradresults.txt','w+')
 counter=alt[0]

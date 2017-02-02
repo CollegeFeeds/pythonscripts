@@ -12,7 +12,7 @@ db.commit()
 titlef=alt[1]
 k=[]
 m=[]
-src=requests.get("http://139.59.40.238:99/test.htm").text
+src=requests.get("http://192.168.1.3:80/test.htm").text
 print "hai"
 soup=bs(src,"html.parser")
 soup1=soup.find_all('div',class_="block")[1]          
