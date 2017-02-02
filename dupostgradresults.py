@@ -11,28 +11,37 @@ db.commit()
 titlef=alt[1]
 src=requests.get("http://exam.du.ac.in/PG-result.html").text
 soup=bs(src,"html.parser")
-soup1=soup.find_all('article',id="contents")[2]          
+soup1=soup.find_all('article',id="contents")[0]          
 soup2=soup1.find_all('a') 
 file1=open('postgradresults.txt','w+')
 counter=alt[0]
-#print "0"
+v=0
+k=[]
+m=[]
+myalt=alt[1]
+condi=0;
 for i in soup2:
+     v=v+1
+     if v<2:
+         continue; 
      link=i["href"]
-     title=i["title"]
+     title="".join([str(j) for j in i.contents]) 
      #print "1"
      if title == alt[1]:
-        cursor2.execute("""update postgradcounter set postgradtitle=%s""",(titlef,))
-        cursor2.execute("""update postgradcounter set postgradid=%d""",(counter))
+        cursor2.execute("""update postgradcounters set postgradtitle=%s""",(titlef,))
         break
      titlef=title
-     #print "2"
-     src2=requests.get(link).text
-     soup3=bs(src2,"html.parser")
-     soup4=soup3.find_all("div",class_="content-inner grid_12")[1].find_all("a")[0]
-     linkf=soup4["href"]
-     sql="""insert into postgradresults(id,title,linkf) values(NULL,'%s','%s')"""%(title,linkf)
+     m.append(link)
+     k.append(title)
+if myalt == alt[1]:
+     condi=1;
+while len(m) !=0:
+     r=m.pop()
+     p=k.pop()
+     sql="""insert into postgradresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
      cursor2.execute(sql)
-     file1.write('\nhttp://www.du.ac.in/du/%s'%linkf)
+     if condi == 1:     
+         cursor2.execute("""update postgradcounters set postgradtitle=%s""",(p,))
      #print "3"
      counter=counter+1
      

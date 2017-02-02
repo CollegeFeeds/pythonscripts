@@ -19,20 +19,27 @@ counter=alt[0]
 v=0;
 m=[]
 k=[]
+myalt=alt[1]
+condi=0;
 for i in soup2:
      v=v+1;
      link=i["href"]
      if v<4:
          continue
      title="".join([str(j) for j in i.contents])
-     m.append(link)
-     k.append(title)
+     
      if title == alt[1]:
          cursor2.execute("""update undergradcounters set undergradtitle=%s""",(titlef,))
          break 
+     m.append(link)
+     k.append(title)
      titlef=title
+if myalt == alt[1]:
+     condi=1;
 while len(m) !=0:
-     sql="""insert into undergradresults(id,title,linkf) values(NULL,'%s','%s')"""%(k.pop(),m.pop())
+     r=m.pop()
+     p=k.pop()
+     sql="""insert into undergradresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
      cursor2.execute(sql)
      counter=counter+1
      

@@ -19,6 +19,8 @@ counter=alt[0]
 v=0;
 m=[]
 k=[]
+myalt=alt[1]
+condi=0;
 for i in soup2:
      v=v+1;
      link=i["href"]
@@ -32,9 +34,15 @@ for i in soup2:
      m.append(link)
      k.append(title)
      titlef=title
+if myalt == alt[1]:
+     condi=1;
 while len(m) !=0:
-     sql="""insert into undergradresults(id,title,linkf) values(NULL,'%s','%s')"""%(k.pop(),m.pop())
+     r=m.pop()
+     p=k.pop()
+     sql="""insert into undergradresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
      cursor2.execute(sql)
+     if condi == 1:
+         cursor2.execute("""update undergradcounters set undergradtitle=%s""",(p,))
      counter=counter+1
      
 file1.close()
