@@ -77,6 +77,8 @@ cmd="""create table south_campuscounters(south_campusid int,south_campustitle ch
 cursor.execute(cmd)
 cmd="""create table south_campusresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
+cmd="""insert into south_campuscounters values(1,"last")"""
+cursor.execute(cmd)
 db.commit()
 cursor.close()
 db.close()
