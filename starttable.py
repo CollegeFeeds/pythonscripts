@@ -85,6 +85,8 @@ cmd="""insert into hansrajcounters values(1,"last")"""
 cursor.execute(cmd)
 cmd="""insert into mphilcounters values(1,"last")"""
 cursor.execute(cmd)
+cmd="""insert into diplomacounters values(1,"last")"""
+cursor.execute(cmd)
 db.commit()
 cursor.close()
 db.close()
