@@ -16,8 +16,8 @@ soup2=soup1.find_all('a')
 file1=open('mphilresults.txt','w+')
 k=[]
 m=[]
-myalt=alt[1]
-condi=0;
+cmd="""insert into hansrajcounters values(1,"last")"""
+cursor2.execute(cmd)
 #print "0"
 for i in soup2:
      try:

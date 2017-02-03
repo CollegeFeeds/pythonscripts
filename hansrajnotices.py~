@@ -22,7 +22,7 @@ condi=0;
 for i in soup2:
      try:
          link=i["href"]
-         title=link
+         title="".join([str(j) for j in i.contents]) 
      except:
          continue
      #print "1"

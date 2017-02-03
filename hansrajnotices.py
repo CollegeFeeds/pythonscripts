@@ -22,7 +22,7 @@ condi=0;
 for i in soup2:
      try:
          link=i["href"]
-         title=link
+         title="".join([str(j) for j in i.contents]) 
      except:
          continue
      #print "1"
@@ -41,7 +41,7 @@ while len(m) !=0:
      sql="""insert into hansrajnotices(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
      cursor2.execute(sql)
      if condi == 1:     
-         cursor2.execute("""update srcccounters set srcctitle=%s""",(p,))
+         cursor2.execute("""update hansrajcounters set hansrajtitle=%s""",(p,))
      
 file1.close()
 db.commit()

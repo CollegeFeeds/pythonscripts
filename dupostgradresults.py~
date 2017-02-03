@@ -39,8 +39,9 @@ while len(m) !=0:
      r=m.pop()
      p=k.pop()
      sql="""insert into postgradresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
-     cursor2.execute(sql)     
-     cursor2.execute("""update postgradcounters set postgradtitle=%s""",(p,))
+     cursor2.execute(sql)
+     if condi == 1:     
+         cursor2.execute("""update postgradcounters set postgradtitle=%s""",(p,))
      #print "3"
      counter=counter+1
      
