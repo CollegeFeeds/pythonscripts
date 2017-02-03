@@ -16,8 +16,8 @@ soup2=soup1.find_all('a')
 file1=open('mphilresults.txt','w+')
 k=[]
 m=[]
-cmd="""insert into hansrajcounters values(1,"last")"""
-cursor2.execute(cmd)
+myalt=alt[1]
+condi=0;
 #print "0"
 for i in soup2:
      try:
@@ -43,7 +43,6 @@ while len(m) !=0:
          cursor2.execute("""update mphilcounters set mphiltitle=%s""",(p,))
      #print "3"
      
-file1.close()
 db.commit()
 cursor2.close()
 #cursor3.close()
