@@ -33,6 +33,10 @@ cmd="""drop table if exists srccnotices"""
 cursor.execute(cmd)
 cmd="""drop table if exists hansrajnotices"""
 cursor.execute(cmd)
+cmd="""drop table if exists south_campusresults"""
+cursor.execute(cmd)
+cmd="""drop table if exists south_campuscounters"""
+cursor.execute(cmd)
 cmd="""create table undergradresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
 cmd="""create table postgradresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
@@ -68,6 +72,12 @@ cursor.execute(cmd)
 cmd="""create table hansrajnotices(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
 cmd="""create table hansrajcounters(hansrajid int,hansrajtitle char(255))"""
+cursor.execute(cmd)
+cmd="""create table south_campuscounters(south_campusid int,south_campustitle char(255))"""
+cursor.execute(cmd)
+cmd="""create table south_campusresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
+cursor.execute(cmd)
+cmd="""insert into south_campuscounters values(1,"last")"""
 cursor.execute(cmd)
 db.commit()
 cursor.close()

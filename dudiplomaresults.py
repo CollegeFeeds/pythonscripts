@@ -21,8 +21,8 @@ for i in soup2:
      title=i["title"]
      #print "1"
      if title == alt[1]:
-        cursor2.execute("""update diplomacounter set diplomatitle=%s""",(titlef))
-        cursor2.execute("""update diplomacounter set diplomaid=%d""",(counter))
+        cursor2.execute("""update diplomacounters set diplomatitle=%s""",(titlef))
+        cursor2.execute("""update diplomacounters set diplomaid=%d""",(counter))
         break
      titlef=title
      #print "2"
