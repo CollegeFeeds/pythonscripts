@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import MySQLdb
-db=MySQLdb.connect("localhost","root","plutonian","test1")
+db=MySQLdb.connect("localhost","root","icancode23","dufeed")
 cursor2=db.cursor()
 #cursor3=db.cursor()
 cmd="""select * from api_mphilcounters"""

@@ -9,9 +9,9 @@ cmd="""drop table if exists undergradcounters"""
 cursor.execute(cmd)
 cmd="""drop table if exists postgradcounters"""
 cursor.execute(cmd)
-cmd="""drop table if exists mphilresults"""
+cmd="""drop table if exists api_mphilresults"""
 cursor.execute(cmd)
-cmd="""drop table if exists mphilcounters"""
+cmd="""drop table if exists api_mphilcounters"""
 cursor.execute(cmd)
 cmd="""drop table if exists ncwebresults"""
 cursor.execute(cmd)
@@ -53,9 +53,9 @@ cmd="""insert into undergradcounters(undergradid,undergradtitle) values(1,"last"
 cursor.execute(cmd)
 cmd="""insert into postgradcounters(postgradid,postgradtitle) values(1,"last")"""
 cursor.execute(cmd)
-cmd="""create table mphilresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
+cmd="""create table api_mphilresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
-cmd="""create table mphilcounters(mphilid int,mphiltitle char(255))"""
+cmd="""create table api_mphilcounters(mphilid int,mphiltitle char(255))"""
 cursor.execute(cmd)
 cmd="""create table phdresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
@@ -87,7 +87,7 @@ cmd="""insert into srcccounters values(1,"last")"""
 cursor.execute(cmd)
 cmd="""insert into hansrajcounters values(1,"last")"""
 cursor.execute(cmd)
-cmd="""insert into mphilcounters values(1,"last")"""
+cmd="""insert into api_mphilcounters values(1,"last")"""
 cursor.execute(cmd)
 cmd="""insert into diplomacounters values(1,"last")"""
 cursor.execute(cmd)
