@@ -4,12 +4,12 @@ import MySQLdb
 db=MySQLdb.connect("localhost","root","plutonian","test1")
 cursor2=db.cursor()
 #cursor3=db.cursor()
-cmd="""select * from datesheetcounters"""
+cmd="""select * from api_datesheetugcounters"""
 cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
 titlef=alt[1]
-src=requests.get("http://exam.du.ac.in/PG-others.html").text
+src=requests.get("http://exam.du.ac.in/UG-datesheets.html").text
 soup=bs(src,"html.parser")
 soup1=soup.find_all('article',id="contents")[0]        
 soup2=soup1.find_all('ul') 
@@ -21,15 +21,16 @@ condi=0;
 #print "0"
 for i in soup2:
      soup9=i.find_all('a')
-     for k in soup9:
+     
+     for ki in soup9:
          try:
-             link=i["href"]
-             title="".join([str(j) for j in k.contents])
+             link=ki["href"]
+             title="".join([str(j) for j in ki.contents])
          except:
              continue;
          print "1"
          if title == alt[1]:
-             cursor2.execute("""update datesheetugcounters set datesheetugtitle=%s""",(titlef,))
+             cursor2.execute("""update api_datesheetugcounters set datesheetugtitle=%s""",(titlef,))
              break
          titlef=title
          m.append(link)
@@ -39,10 +40,10 @@ for i in soup2:
      while len(m) !=0:
          r=m.pop()
          p=k.pop()
-         sql="""insert into datesheetugresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
+         sql="""insert into api_datesheetugresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
          cursor2.execute(sql)
          if condi == 1:     
-             cursor2.execute("""update datesheetcounters set datesheettitle=%s""",(p,))
+             cursor2.execute("""update api_datesheetugcounters set datesheettitle=%s""",(p,))
          #print "3"
      
 file1.close()

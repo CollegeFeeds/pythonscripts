@@ -37,6 +37,10 @@ cmd="""drop table if exists south_campusresults"""
 cursor.execute(cmd)
 cmd="""drop table if exists south_campuscounters"""
 cursor.execute(cmd)
+cmd="""drop table if exists api_datesheetugresults"""
+cursor.execute(cmd)
+cmd="""drop table if exists api_datesheetugcounters"""
+cursor.execute(cmd)
 cmd="""create table undergradresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
 cmd="""create table postgradresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
@@ -89,11 +93,11 @@ cmd="""insert into diplomacounters values(1,"last")"""
 cursor.execute(cmd)
 cmd="""insert into ncwebcounters values(1,"last")"""
 cursor.execute(cmd)
-cmd="""create table datesheetcounters(south_campusid int,south_campustitle char(255))"""
+cmd="""create table api_datesheetugcounters(south_campusid int,south_campustitle char(255))"""
 cursor.execute(cmd)
-cmd="""create table datesheetresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
+cmd="""create table api_datesheetugresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
-cmd="""insert into datesheetcounters values(1,"last")"""
+cmd="""insert into api_datesheetugcounters values(1,"last")"""
 cursor.execute(cmd)
 db.commit()
 cursor.close()
