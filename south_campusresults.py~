@@ -23,7 +23,7 @@ for i in soup2:
      if v<2:
          continue; 
      link=i["href"]
-     title=link 
+     title=link //smjh nahi aaya bc 
      #print "1"
      if title == alt[1]:
         cursor2.execute("""update south_campuscounters set south_campustitle=%s""",(titlef,))

@@ -87,6 +87,14 @@ cmd="""insert into mphilcounters values(1,"last")"""
 cursor.execute(cmd)
 cmd="""insert into diplomacounters values(1,"last")"""
 cursor.execute(cmd)
+cmd="""insert into ncwebcounters values(1,"last")"""
+cursor.execute(cmd)
+cmd="""create table datesheetcounters(south_campusid int,south_campustitle char(255))"""
+cursor.execute(cmd)
+cmd="""create table datesheetresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
+cursor.execute(cmd)
+cmd="""insert into datesheetcounters values(1,"last")"""
+cursor.execute(cmd)
 db.commit()
 cursor.close()
 db.close()

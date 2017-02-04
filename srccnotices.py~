@@ -40,7 +40,7 @@ while len(m) !=0:
      cursor2.execute(sql)
      #file1.write('\n%s'%link)
      if condi == 1:     
-         cursor2.execute("""update south_campuscounters set south_campustitle=%s""",(p,))
+         cursor2.execute("""update srcccounters set srcctitle=%s""",(p,))
      #counter=counter+1
      
 file1.close()

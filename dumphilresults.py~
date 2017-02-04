@@ -43,6 +43,7 @@ while len(m) !=0:
          cursor2.execute("""update mphilcounters set mphiltitle=%s""",(p,))
      #print "3"
      
+file1.close()
 db.commit()
 cursor2.close()
 #cursor3.close()

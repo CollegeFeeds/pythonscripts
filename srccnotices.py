@@ -4,7 +4,7 @@ import MySQLdb
 db=MySQLdb.connect("localhost","root","plutonian","test1")
 cursor2=db.cursor()
 #cursor3=db.cursor()
-cmd="""select * from srcccounters"""
+cmd="""select * from api_srcccounters"""
 cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
@@ -26,7 +26,7 @@ for i in soup2:
      #print link
      #print " "
      if title==alt[1]:
-         cursor2.execute("""update srcccounters set srcctitle=%s""",(titlef,))
+         cursor2.execute("""update api_srcccounters set srcctitle=%s""",(titlef,))
          break
      titlef=title
      m.append(link)
@@ -36,11 +36,11 @@ if myalt == alt[1]:
 while len(m) !=0:
      r=m.pop()
      p=k.pop()
-     sql="""insert into srccnotices(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
+     sql="""insert into api_srccnotices(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
      cursor2.execute(sql)
      #file1.write('\n%s'%link)
      if condi == 1:     
-         cursor2.execute("""update srcccounters set srcctitle=%s""",(p,))
+         cursor2.execute("""update api_srcccounters set srcctitle=%s""",(p,))
      #counter=counter+1
      
 file1.close()

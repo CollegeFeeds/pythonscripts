@@ -48,7 +48,4 @@ db.commit()
 cursor2.close()
 #cursor3.close()
 db.close()
-db.commit()
-cursor2.close()
-#cursor3.close()
-db.close()
+
