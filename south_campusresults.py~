@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as bs
 import MySQLdb
 db=MySQLdb.connect("localhost","root","plutonian","test1")
 cursor2=db.cursor()
-cmd="""select * from south_campuscounters"""
+cmd="""select * from api_south_campuscounters"""
 cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
@@ -26,7 +26,7 @@ for i in soup2:
      title=link //smjh nahi aaya bc 
      #print "1"
      if title == alt[1]:
-        cursor2.execute("""update south_campuscounters set south_campustitle=%s""",(titlef,))
+        cursor2.execute("""update api_south_campuscounters set south_campustitle=%s""",(titlef,))
         break
      titlef=title
      m.append(link)
@@ -36,10 +36,10 @@ if myalt == alt[1]:
 while len(m) !=0:
      r=m.pop()
      p=k.pop()
-     sql="""insert into south_campusresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
+     sql="""insert into api_south_campusresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
      cursor2.execute(sql)
      if condi == 1:     
-         cursor2.execute("""update south_campuscounters set south_campustitle=%s""",(p,))
+         cursor2.execute("""update api_south_campuscounters set south_campustitle=%s""",(p,))
      #print "3"
      counter=counter+1
      
