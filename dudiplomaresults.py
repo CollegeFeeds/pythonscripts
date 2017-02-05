@@ -1,10 +1,10 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import MySQLdb
-db=MySQLdb.connect("localhost","root","plutonian","test1")
+db=MySQLdb.connect("localhost","root","icancode23","dufeed")
 cursor2=db.cursor()
 #cursor3=db.cursor()
-cmd="""select * from diplomacounters"""
+cmd="""select * from api_diplomacounters"""
 cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
@@ -27,7 +27,7 @@ for i in soup2:
          continue;
      #print "1"
      if title == alt[1]:
-        cursor2.execute("""update diplomacounters set diplomatitle=%s""",(titlef,))
+        cursor2.execute("""update api_diplomacounters set diplomatitle=%s""",(titlef,))
         break
      titlef=title
      m.append(link)
@@ -37,10 +37,10 @@ if myalt == alt[1]:
 while len(m) !=0:
      r=m.pop()
      p=k.pop()
-     sql="""insert into diplomaresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
+     sql="""insert into api_diplomaresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
      cursor2.execute(sql)
      if condi == 1:     
-         cursor2.execute("""update diplomacounters set diplomatitle=%s""",(p,))
+         cursor2.execute("""update api_diplomacounters set diplomatitle=%s""",(p,))
      #print "3"
      
 file1.close()
