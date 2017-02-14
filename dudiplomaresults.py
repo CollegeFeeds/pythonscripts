@@ -9,6 +9,7 @@ cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
 titlef=alt[1]
+counter=alt[0]
 src=requests.get("http://exam.du.ac.in/certificate-result.html").text
 soup=bs(src,"html.parser")
 soup1=soup.find_all('article',id="contents")[0]        
@@ -38,11 +39,12 @@ while len(m) !=0:
      r=m.pop()
      p=k.pop()
      sql="""insert into api_diplomaresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
+     counter=counter+1
      cursor2.execute(sql)
      if condi == 1:     
          cursor2.execute("""update api_diplomacounters set diplomatitle=%s""",(p,))
-     #print "3"
-     
+     cursor2.execute("""update api_diplomacounters set diplomaid=%ld""",(counter,))
+     cursor2.execute()
 file1.close()
 db.commit()
 cursor2.close()
