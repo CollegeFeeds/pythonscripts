@@ -29,8 +29,9 @@ for headline in soup2:
 	# print "The title for the headline is: ",headline['title']
 	# print "The link is ",headline['href']
 	try:
+		print headline['title']
 		headline_links.append(headline['href'].encode('utf-8'))
-		sql_query="""INSERT INTO api_headlines(id,title,linkf) VALUES(NULL,'%s','%s')"""%(headline['title'].encode('utf-8'),headline['href'].encode('utf-8'))
+		sql_query="""INSERT INTO api_headlines(id,title,linkf,imagelink) VALUES(NULL,'%s','%s','null')"""%(headline['title'].encode('utf-8'),headline['href'].encode('utf-8'))
 		#print sql_query
 		cursor.execute(sql_query)
 
@@ -40,7 +41,12 @@ i=0
 for link in headline_links:
 	a=requests.get(link)
 	soupa=bs(a.text,"html.parser")
-	image_links.append(soupa.find_all('div',class_="single_post_format_image")[0].find_all('img')[0]['src'].encode('utf-8'))
+	imgsrc=soupa.find_all('div',class_="single_post_format_image")[0].find_all('img')[0]['src'].encode('utf-8')
+	image_links.append(imgsrc)
+	sql_query="""UPDATE api_headlines SET imagelink='%s' WHERE linkf='%s' """%(imgsrc,link)
+	print sql_query
+	cursor.execute(sql_query)
+	db.commit()
 	i=i+1
 	print i
 
