@@ -57,11 +57,13 @@ for link in headline_links:
 print "The previous headlines are",previous_headlines
 print "The current headlines are",currentheadline_titles
  ####################### Check Whether to update banners and then publish the status#######
- if set(previous_headlines).issubset(set(currentheadline_titles)):
- 	if set(previous_headlines)==set(currentheadline_titles):
+if set(previous_headlines).issubset(set(currentheadline_titles)):
+	if set(previous_headlines)==set(currentheadline_titles):
  		pass
  	else:
  		########## Notify all app users that there are some changes #######################
+ 		pass
+
 db.commit()
 db.close()
 
