@@ -1,6 +1,9 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import MySQLdb
+import sys
+reload(sys)
+
 db=MySQLdb.connect("localhost","root","plutonian","dufeed")
 cursor2=db.cursor()
 cmd="""select * from api_notificationCounter"""
@@ -18,12 +21,29 @@ k=[]
 m=[]
 myalt=alt[1]
 condi=0;
+#sexy=0
 for i in soup2:
      v=v+1
      if v<2:
          continue; 
      link=i["href"]
-     title=link#"".join([str(j) for j in i.contents]) 
+     try:
+     	#title="".join([str(j) for j in i.contents])
+     	title=""
+     	for j in i.contents:
+     		try:
+     			title = title+j
+     		except:
+     			print j
+     			sexy=1
+     			continue;
+        #if sexy == 1:
+        	#sexy=0
+        	#print title
+     except:
+     	print j
+     	print "error"
+     	continue
      #print "1"
      if title == alt[1]:
         cursor2.execute("""update api_notificationCounter set title=%s""",(titlef,))
