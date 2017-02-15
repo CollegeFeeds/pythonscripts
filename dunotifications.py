@@ -39,10 +39,11 @@ while len(m) !=0:
      sql="""insert into api_notifications(id,title,linkf) values('%ld','%s','%s')"""%(counter,p,r)
      cursor2.execute(sql)
      if condi == 1:     
-         cursor2.execute("""update api_notifications set title=%s""",(p,))
+         cursor2.execute("""update api_notificationCounter set title=%s""",(p,))
      #print "3"
      counter=counter+1
-cursor2.execute("""update api_notificationCounter set counter=%ld""",(counter))
+sql="""update api_notificationCounter set counter='%ld' """%(counter)     
+cursor2.execute(sql)
 db.commit()
 cursor2.close()
 #cursor3.close()
