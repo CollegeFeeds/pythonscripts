@@ -21,9 +21,9 @@ cmd="""drop table if exists phdcounters"""
 cursor.execute(cmd)
 cmd="""drop table if exists phdresults"""
 cursor.execute(cmd)
-cmd="""drop table if exists diplomacounters"""
+cmd="""drop table if exists api_diplomacounters"""
 cursor.execute(cmd)
-cmd="""drop table if exists diplomaresults"""
+cmd="""drop table if exists api_diplomaresults"""
 cursor.execute(cmd)
 cmd="""drop table if exists srcccounters"""
 cursor.execute(cmd)
@@ -61,9 +61,9 @@ cmd="""create table phdresults(id int primary key auto_increment,title char(255)
 cursor.execute(cmd)
 cmd="""create table phdcounters(phdid int,phdtitle char(255))"""
 cursor.execute(cmd)
-cmd="""create table diplomaresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
+cmd="""create table api_diplomaresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)
-cmd="""create table diplomacounters(diplomaid int,diplomatitle char(255))"""
+cmd="""create table api_diplomacounters(diplomaid int,diplomatitle char(255))"""
 cursor.execute(cmd)
 cmd="""create table ncwebresults(id int primary key auto_increment,title char(255) not null,linkf char(255) not null)"""
 cursor.execute(cmd)

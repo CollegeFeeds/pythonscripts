@@ -1,19 +1,18 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import MySQLdb
-db=MySQLdb.connect("localhost","root","icancode23","dufeed")
+db=MySQLdb.connect("localhost","root","plutonian","dufeed")
 cursor2=db.cursor()
 #cursor3=db.cursor()
-cmd="""select * from api_postgradcounters"""
+cmd="""select * from api_PGexamcounter"""
 cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
 titlef=alt[1]
-src=requests.get("http://exam.du.ac.in/PG-result.html").text
+src=requests.get("http://exam.du.ac.in/PG-exam.html").text
 soup=bs(src,"html.parser")
-soup1=soup.find_all('article',id="contents")[0]          
+soup1=soup.find_all('div',id="Wrapper3")[0]          
 soup2=soup1.find_all('a') 
-file1=open('postgradresults.txt','w+')
 counter=alt[0]
 v=0
 k=[]
@@ -25,10 +24,10 @@ for i in soup2:
      if v<2:
          continue; 
      link=i["href"]
-     title=link#"".join([str(j) for j in i.contents]) 
+     title="".join([str(j) for j in i.contents]) 
      #print "1"
      if title == alt[1]:
-        cursor2.execute("""update api_postgradcounters set postgradtitle=%s""",(titlef,))
+        cursor2.execute("""update api_PGexamcounter set title=%s""",(titlef,))
         break
      titlef=title
      m.append(link)
@@ -38,14 +37,15 @@ if myalt == alt[1]:
 while len(m) !=0:
      r=m.pop()
      p=k.pop()
-     sql="""insert into api_postgradresults(id,title,linkf) values(NULL,'%s','%s')"""%(p,r)
+     sql="""insert into api_PGexamschedule(id,title,linkf) values('%ld','%s','%s')"""%(counter,p,r)
      cursor2.execute(sql)
      if condi == 1:     
-         cursor2.execute("""update api_postgradcounters set postgradtitle=%s""",(p,))
+         cursor2.execute("""update api_PGexamcounter set title=%s""",(p,))
      #print "3"
      counter=counter+1
-     
-file1.close()
+counter=counter-1
+sql="""update api_PGexamcounter set counter='%ld' """%(counter)  
+cursor2.execute(sql) 
 db.commit()
 cursor2.close()
 #cursor3.close()
