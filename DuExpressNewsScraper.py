@@ -37,10 +37,10 @@ for headline in soup2[5:39:4]:
 	print "The link is ",headline['href']
 	try:
 		currentheadline_titles.append(headline['title'])
-		print headline['title']
+		#print headline['title']
 		headline_links.append(headline['href'].encode('utf-8'))
 		sql_query="""INSERT INTO api_headlines(id,title,linkf,imagelink) VALUES(NULL,'%s','%s','null')"""%(headline['title'].encode('utf-8'),headline['href'].encode('utf-8'))
-		print sql_query
+		#print sql_query
 		cursor.execute(sql_query)
 
 	except Exception as e:
@@ -58,8 +58,8 @@ for link in headline_links:
 	cursor.execute(sql_query)
 	db.commit()
 # ######################### DEBUG PRINTS #######################
-print "The previous headlines are",previous_headlines
-print "The current headlines are",currentheadline_titles
+#print "The previous headlines are",previous_headlines
+#print "The current headlines are",currentheadline_titles
  ####################### Check Whether to update banners and then publish the status#######
 if set(previous_headlines).issubset(set(currentheadline_titles)):
 	if set(previous_headlines)==set(currentheadline_titles):
