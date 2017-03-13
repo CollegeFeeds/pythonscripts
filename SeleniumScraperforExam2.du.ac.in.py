@@ -5,7 +5,6 @@ import time
 def create_ch_driver():
   chrome_options = wb.ChromeOptions()
   chrome_options.add_argument("--no-sandbox")
-  chrome_options.add_argument("--user-agent={}".format(config.USER_AGENT))
   return wb.Chrome("/usr/local/bin/chromedriver", chrome_options=chrome_options)
 #pathtochromedriver = '/Users/nipunarora/Desktop/django/webscraper&djangostart/seleniumscraper/chromedriver'### path to chromedriver Nipuns laptop
  ##ubuntu chromedriver path
