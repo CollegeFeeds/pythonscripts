@@ -3,7 +3,7 @@ from pyvirtualdisplay import Display
 from selenium import webdriver as wb
 import time
 def create_ch_driver():
-  chrome_options = webdriver.ChromeOptions()
+  chrome_options = wb.ChromeOptions()
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--user-agent={}".format(config.USER_AGENT))
   return wb.Chrome("/usr/local/bin/chromedriver", chrome_options=chrome_options)
