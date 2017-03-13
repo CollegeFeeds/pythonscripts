@@ -2,7 +2,7 @@ from pyvirtualdisplay import Display
 from selenium import webdriver as wb
 import time
 #pathtochromedriver = '/Users/nipunarora/Desktop/django/webscraper&djangostart/seleniumscraper/chromedriver'### path to chromedriver Nipuns laptop
-pathtochromedriver='/usr/local/share/chromedriver' ##ubuntu chromedriver path
+pathtochromedriver='/chromedriver' ##ubuntu chromedriver path
 ################## A Virtual Display for VPS #########################
 display = Display(visible=0, size=(800, 600))
 display.start()
