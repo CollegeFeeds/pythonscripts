@@ -6,6 +6,7 @@ pathtochromedriver='/usr/local/share/chromedriver' ##ubuntu chromedriver path
 ################## A Virtual Display for VPS #########################
 display = Display(visible=0, size=(800, 600))
 display.start()
+print "Display Started"
 driver = wb.Chrome(executable_path=pathtochromedriver)  
 print "driver executed"
 driver.get('http://duexam2.du.ac.in/RSLT_ND2016/Students/List_Of_Declared_Results.aspx')
