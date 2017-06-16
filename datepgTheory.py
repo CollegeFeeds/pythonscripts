@@ -1,12 +1,12 @@
 import requests
 from bs4 import BeautifulSoup as bs
-#import MySQLdb
-#db=MySQLdb.connect("localhost","root","icancode23","dufeed")
-#cursor2=db.cursor()
-#cmd="""select * from api_UDSCcounters"""
-#cursor2.execute(cmd)
-#alt=cursor2.fetchone()
-#db.commit()
+import MySQLdb
+db=MySQLdb.connect("localhost","root","icancode23","dufeed")
+cursor2=db.cursor()
+cmd="""select * from api_pgdatecounters"""
+cursor2.execute(cmd)
+alt=cursor2.fetchone()
+db.commit()
 last_notification="run"
 src=requests.get("http://exam.du.ac.in/PG-datesheets.html").text
 soup=bs(src,"html.parser")
@@ -29,8 +29,8 @@ while soup2!=last_notification and j<80:
 	print j
 	soup2=soup1[j]
 
-	#sql="""insert into api_UDSC(id,link,title) values(NULL,'%s','%s')"""%(link,name)
-	#cursor2.execute(sql)
-#cursor2.execute("""update api_UDSCcounters set link=%s""",(href,))
-#db.commit()
-#db.close()
+	sql="""insert into api_pgdate(id,link,title) values(NULL,'%s','%s')"""%(link,name)
+	cursor2.execute(sql)
+cursor2.execute("""update api_pgdatecounters set link=%s""",(href,))
+db.commit()
+db.close()
