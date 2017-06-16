@@ -15,7 +15,7 @@ soup1=soup.find_all('a')
 soup2=soup1[21]
 href=soup2
 print soup2
-while soup2!=last_notification and j<80:
+while soup2!=last_notification and j<141:
 	#print soup2
 	try:
 		link=soup2["href"]
