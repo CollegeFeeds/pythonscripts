@@ -8,11 +8,11 @@ from bs4 import BeautifulSoup as bs
 #alt=cursor2.fetchone()
 #db.commit()
 last_notification="run"
-src=requests.get("http://exam.du.ac.in/UDSC-datesheets.html").text
+src=requests.get("http://exam.du.ac.in/certificate-datesheets.html").text
 soup=bs(src,"html.parser")
-j=22     
+j=21     
 soup1=soup.find_all('a')
-soup2=soup1[22]
+soup2=soup1[21]
 href=soup2
 print soup2
 while soup2!=last_notification and j<80:

@@ -14,9 +14,7 @@ j=22
 soup1=soup.find_all('a')
 soup2=soup1[22]
 href=soup2
-print soup2
-print type(soup1)
-while soup2!=last_notification and j<67:
+while soup2!=last_notification and j<80:
 	link=soup2["href"]
 	name=soup2.decode_contents(formatter="html")
 	print name
