@@ -7,7 +7,7 @@ cmd="""select * from api_pgdatecounters"""
 cursor2.execute(cmd)
 alt=cursor2.fetchone()
 db.commit()
-last_notification="run"
+#last_notification="run"
 src=requests.get("http://exam.du.ac.in/PG-datesheets.html").text
 soup=bs(src,"html.parser")
 j=21     
